@@ -2,7 +2,7 @@
 
 A retrieval-augmented (RAG) chatbot over the **craniosynostosis / craniofacial research
 literature**, pulled from PubMed. Ask a question in plain English and get a grounded,
-**cited** answer drawn only from real published abstracts — no digging through search results.
+**cited** answer drawn only from real published abstracts, doesnt require digging through search results.
 
 > **Responsible use.** This is a literature-navigation tool for researchers and students. It
 > summarizes published research and is **not medical advice, not a diagnostic tool, and not a
@@ -56,9 +56,8 @@ cd backend && uvicorn main:app --reload --port 8000
 streamlit run frontend/app.py
 ```
 
-Open the Streamlit URL it prints (usually http://localhost:8501) and ask away.
 
-## How it works (the 60-second version)
+## How it works 
 
 1. **Ingest** — pull abstracts for craniosynostosis / plagiocephaly / cranial-deformity / cranial
    CV topics via PubMed's API, store title + abstract + PMID + link.
@@ -70,13 +69,8 @@ Open the Streamlit URL it prints (usually http://localhost:8501) and ask away.
 5. **Evaluate** — `eval/evaluate.py` scores faithfulness (is the answer supported by the sources?)
    and answer relevancy with RAGAS, so you can quote a real accuracy number.
 
-## Talking points (for an application / interview)
 
-- Why **hybrid + reranking** beats naive vector search (exact clinical terms vs. paraphrase).
-- **Grounding + citations** as a hallucination defense, with a measured **faithfulness** score.
-- A clear, responsible scope: literature navigation, not diagnosis.
-
-## Stretch goals (if you have time)
+## Stretch goals 
 
 - Add PMC open-access **full-text** (not just abstracts) for deeper answers.
 - Add an **agentic self-check** node that verifies each citation actually supports its claim.
